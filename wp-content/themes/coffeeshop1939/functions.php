@@ -1,5 +1,9 @@
 <?php
 
+add_filter('acf/settings/rest_api_format', function () {
+    return "standard";
+});
+
 function coffee_shop_setup() {
     add_theme_support('post-thumbnails');
 }
