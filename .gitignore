@@ -1,0 +1,59 @@
+# -----------------------------------------------------------------------------
+# Ignorar Carpetas de WordPress Core (Generalmente NO deben subirse)
+# -----------------------------------------------------------------------------
+
+# Ignora el núcleo de WordPress (wp-admin y wp-includes)
+# Esto supone que solo subirás tus archivos personalizados (Temas/Plugins)
+wp-admin/
+wp-includes/
+
+# -----------------------------------------------------------------------------
+# Contenido Generado y Archivos Comunes
+# -----------------------------------------------------------------------------
+
+# Archivos de configuración de la base de datos (¡Contiene credenciales sensibles!)
+wp-config.php
+
+# Archivo de debug o errores que puede contener información sensible
+error_log
+php_error.log
+
+# -----------------------------------------------------------------------------
+# Elementos de wp-content que DEBEN ser ignorados
+# -----------------------------------------------------------------------------
+
+# Subidas de medios (archivos grandes y binarios que cambian constantemente)
+wp-content/uploads/
+
+# Caché (temporal y se regenera)
+wp-content/cache/
+wp-content/blogs.dir/
+
+# Archivos generados por algunos plugins de seguridad o optimización
+wp-content/backup-*/
+wp-content/upgrade/
+
+# -----------------------------------------------------------------------------
+# Elementos Específicos de Plugins
+# -----------------------------------------------------------------------------
+
+# Ignorar plugins que se gestionan por Composer/otros, o que son binarios grandes.
+# Puedes añadir aquí plugins específicos si lo necesitas.
+# wp-content/plugins/revslider/
+# wp-content/plugins/fusion-builder/
+
+# -----------------------------------------------------------------------------
+# Archivos de Sistema y Editor
+# -----------------------------------------------------------------------------
+
+# Archivos de macOS
+.DS_Store
+
+# Archivos de Windows
+Thumbs.db
+
+# Archivos de editor/IDE comunes (ej. VS Code, Sublime Text, Vim)
+*.sublime-project
+*.sublime-workspace
+.idea/
+.vscode/
