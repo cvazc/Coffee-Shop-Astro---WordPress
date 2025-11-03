@@ -12,9 +12,15 @@ add_action('after_setup_theme', 'coffee_shop_setup');
 
 function coffee_shop_api_init() {
     register_rest_field(
-        array('page','post'),
+        array('page', 'post'),
         'featured_images',
         array('get_callback' => 'get_featured_image')
+    );
+
+    register_rest_field(
+        array('post'),
+        'category_details',
+        array('get_callback' => 'get_post_categories')
     );
 }
 
@@ -43,4 +49,19 @@ function get_featured_image($post) {
     }
 
     return $images;
+}
+
+function get_post_categories($post) {
+
+    return array_map(
+        function ($categoryId) {
+            $category = get_category($categoryId, 'ARRAY_A');
+
+            return [
+                'name' => $category['name'],
+                'slug' => $category['slug']
+            ];
+        },
+        $post['categories']
+    );
 }
