@@ -12,7 +12,7 @@ add_action('after_setup_theme', 'coffee_shop_setup');
 
 function coffee_shop_api_init() {
     register_rest_field(
-        array('page'),
+        array('page','post'),
         'featured_images',
         array('get_callback' => 'get_featured_image')
     );
