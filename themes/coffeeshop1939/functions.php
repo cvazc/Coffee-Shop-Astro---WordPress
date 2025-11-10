@@ -58,6 +58,7 @@ function get_post_categories($post) {
             $category = get_category($categoryId, 'ARRAY_A');
 
             return [
+                'id' => $category['term_id'],
                 'name' => $category['name'],
                 'slug' => $category['slug']
             ];
