@@ -22,6 +22,12 @@ function coffee_shop_api_init() {
         'category_details',
         array('get_callback' => 'get_post_categories')
     );
+
+    register_rest_field(
+        array('page'),
+        'gallery',
+        array('get_callback' => 'get_gallery_images')
+    );
 }
 
 add_action('rest_api_init', 'coffee_shop_api_init');
@@ -64,5 +70,35 @@ function get_post_categories($post) {
             ];
         },
         $post['categories']
+    );
+}
+
+function get_gallery_images($post) {
+    if ($post['slug'] !== 'galeria') {
+        return [];
+    }
+
+    $gallery = get_post_gallery($post['id'], false);
+    $galleryIds = array_map('intval', explode(",", $gallery['ids']));
+
+    return array_map(
+        function ($imageId) {
+            $largeImage = wp_get_attachment_image_src($imageId, 'large');
+            $fullImage = wp_get_attachment_image_src($imageId, 'full');
+            
+            return [
+                'large' => [
+                    'url' => $largeImage[0],
+                    'width' => $largeImage[1],
+                    'height' => $largeImage[2],
+                ],
+                'full' => [
+                    'url' => $fullImage[0],
+                    'width' => $fullImage[1],
+                    'height' => $fullImage[2],
+                ],
+            ];
+        },
+        $galleryIds
     );
 }
